@@ -28,4 +28,80 @@
 	- 一旦过了演出日，价值就马上变成0
 
 
+## tasking 
 
+
+~~~
+
+Given  
+	价值大于50时(Quality 的值大于 50 时)
+When
+	处理
+Then
+	将价值调整为50 (Quality 的值赋为 50)
+
+
+Given  
+	价值小于0时(Quality 的值小于 0 时)
+When
+	处理
+Then
+	将价值调整为0(Quality 的值赋为 0)
+
+
+Given  
+	价值在0到50之间时(Quality 的值大于等于 0 小于等于50时)
+When
+	处理
+Then
+	将价值保持原值(Quality 的值赋为自己)
+
+
+Given  
+	陈年干酪(Aged Brie)过期后(SellIn 的值小于 0 时)
+When
+	处理
+Then
+	价值双倍上升(rate = 2*origin_rate，Quality=Quality+rate*Quality)
+
+
+Given  
+	萨弗拉斯(Sulfuras)不论是否过期(SellIn 的值任意变化)
+When
+	处理
+Then
+	价值不变(Quality=Quality)
+
+
+Given  
+	后台门票（Backstage pass）在小于10天大于5天的情况下(SellIn 小于10大于5)
+When
+	处理
+Then
+	价值不变(Quality=Quality+2)
+
+
+Given  
+	后台门票（Backstage pass）在小于5天大于0天的情况下(SellIn 小于5大于0)
+When
+	处理
+Then
+	价值不变(Quality=Quality+3)
+
+
+Given  
+	后台门票（Backstage pass）在小于0天的情况下(SellIn 小于0)
+When
+	处理
+Then
+	价值不变(Quality=0)
+
+
+Given  
+	其它商品过期后(SellIn 的值小于 0 时)
+When
+	处理
+Then
+	价值双倍下滑(rate = 2*origin_rate，Quality=Quality-rate*Quality)
+
+~~~
