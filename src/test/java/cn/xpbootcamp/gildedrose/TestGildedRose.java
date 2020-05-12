@@ -39,4 +39,12 @@ public class TestGildedRose {
         assertThat(gildedrose.getQuality()).isEqualTo(11);
 
     }
+
+    @Test
+    public void should_return_increase1_when_type_is_AgedBrie_and_expire (){
+        GildedRose gildedrose = new GildedRose(-1,10,"AgedBrie");
+        gildedrose.oneMoreDay();
+        assertThat(gildedrose.getQuality()).isEqualTo(12);
+
+    }
 }
