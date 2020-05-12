@@ -43,6 +43,16 @@ public class GildedRose{
             quality += 0;
             quality = limitQuality(quality);
         }
+        else if (this.type == "AgedBrie"){
+            if (this.sellIn >= 0){
+                quality += this.rate;
+                quality = limitQuality(quality);
+            }
+            else {
+                quality += this.rate*2;
+                quality = limitQuality(quality);
+            }
+        }
     }
 
 
