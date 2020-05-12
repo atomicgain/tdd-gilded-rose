@@ -47,4 +47,32 @@ public class TestGildedRose {
         assertThat(gildedrose.getQuality()).isEqualTo(12);
 
     }
+    @Test
+    public void should_return_increase1_when_type_is_BackstagePass_and_sellin_greater_then_10 (){
+        GildedRose gildedrose = new GildedRose(21,10,"BackstagePass");
+        gildedrose.oneMoreDay();
+        assertThat(gildedrose.getQuality()).isEqualTo(11);
+
+    }
+    @Test
+    public void should_return_increase1_when_type_is_BackstagePass_and_sellin_between_10_and_5 (){
+        GildedRose gildedrose = new GildedRose(9,10,"BackstagePass");
+        gildedrose.oneMoreDay();
+        assertThat(gildedrose.getQuality()).isEqualTo(12);
+
+    }
+    @Test
+    public void should_return_increase1_when_type_is_BackstagePass_and_sellin_between_0_and_5 (){
+        GildedRose gildedrose = new GildedRose(4,10,"BackstagePass");
+        gildedrose.oneMoreDay();
+        assertThat(gildedrose.getQuality()).isEqualTo(13);
+
+    }
+    @Test
+    public void should_return_increase1_when_type_is_BackstagePass_and_sellin_less_then_0 (){
+        GildedRose gildedrose = new GildedRose(0,10,"BackstagePass");
+        gildedrose.oneMoreDay();
+        assertThat(gildedrose.getQuality()).isEqualTo(0);
+
+    }
 }

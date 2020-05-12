@@ -53,6 +53,25 @@ public class GildedRose{
                 quality = limitQuality(quality);
             }
         }
+        else if (this.type == "BackstagePass"){
+            if (this.sellIn > 10){
+                quality += this.rate;
+                quality = limitQuality(quality);
+            }
+            else if ((this.sellIn <= 10 && this.sellIn >5)){
+                quality += this.rate*2;
+                quality = limitQuality(quality);
+            }
+            else if ((this.sellIn <= 5 && this.sellIn >0)){
+                quality += this.rate*3;
+                quality = limitQuality(quality);
+            }
+            else {
+                quality = 0;
+                quality = limitQuality(quality);
+            }
+        }
+
     }
 
 
