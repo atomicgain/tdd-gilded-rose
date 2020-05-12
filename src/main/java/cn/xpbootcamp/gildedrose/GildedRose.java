@@ -71,6 +71,16 @@ public class GildedRose{
                 quality = limitQuality(quality);
             }
         }
+        else {
+            if (this.sellIn > 0){
+                quality -= this.rate;
+                quality = limitQuality(quality);
+            }
+            else {
+                quality -= this.rate*2;
+                quality = limitQuality(quality);
+            }
+        }
 
     }
 
