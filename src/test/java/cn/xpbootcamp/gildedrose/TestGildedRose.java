@@ -20,5 +20,15 @@ public class TestGildedRose {
     public void should_return_n_when_quality_is_between_0_and_50 (){
         assertThat(gildedrose.limitQuality(1)).isEqualTo(1);
         assertThat(gildedrose.limitQuality(49)).isEqualTo(49);
+        assertThat(gildedrose.limitQuality(0)).isEqualTo(0);
+        assertThat(gildedrose.limitQuality(50)).isEqualTo(50);
+    }
+
+    @Test
+    public void should_return_n_when_type_is_Sulfuras (){
+        GildedRose gildedrose = new GildedRose(10,10,"Sulfuras");
+        gildedrose.oneMoreDay();
+        assertThat(gildedrose.getQuality()).isEqualTo(10);
+
     }
 }

@@ -56,21 +56,30 @@ When
 Then
 	将价值保持原值(Quality 的值赋为自己)
 
-
-Given  
-	陈年干酪(Aged Brie)过期后(SellIn 的值小于 0 时)
-When
-	处理
-Then
-	价值双倍上升(rate = 2*origin_rate，Quality=Quality+rate*Quality)
-
-
 Given  
 	萨弗拉斯(Sulfuras)不论是否过期(SellIn 的值任意变化)
 When
 	处理
 Then
 	价值不变(Quality=Quality)
+
+
+Given  
+	陈年干酪(Aged Brie)过期前(SellIn 的值大于 0 时)
+When
+	处理
+Then
+	价值递增(rate = origin_rate，Quality=Quality+rate)
+
+
+Given  
+	陈年干酪(Aged Brie)过期后(SellIn 的值小于 0 时)
+When
+	处理
+Then
+	价值双倍上升(rate = 2*origin_rate，Quality=Quality+rate)
+
+
 
 
 Given  
@@ -102,6 +111,6 @@ Given
 When
 	处理
 Then
-	价值双倍下滑(rate = 2*origin_rate，Quality=Quality-rate*Quality)
+	价值双倍下滑(rate = 2*origin_rate，Quality=Quality-rate)
 
 ~~~
