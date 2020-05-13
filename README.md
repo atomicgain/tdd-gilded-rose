@@ -113,4 +113,11 @@ When
 Then
 	价值双倍下滑(rate = 2*origin_rate，Quality=Quality-rate)
 
+Given
+	普通商品XX初始价值为50,保质期0天
+When
+	商品信息更新3天
+Then
+	商品价值应为44
+
 ~~~

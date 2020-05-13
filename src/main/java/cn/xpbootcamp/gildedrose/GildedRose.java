@@ -83,8 +83,10 @@ public class GildedRose{
         }
 
     }
-
-
-
+    public void nMoreDays(int n){
+        for(int i = n; i > 0; i-=1) {
+            oneMoreDay();
+        }
+    }
 }
 

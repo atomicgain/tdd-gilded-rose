@@ -89,4 +89,11 @@ public class TestGildedRose {
         assertThat(gildedrose.getQuality()).isEqualTo(8);
 
     }
+    @Test
+    public void should_return_44_when_type_is_other_and_sellin_less_then_0_quality_is_50_3dayslater (){
+        GildedRose gildedrose = new GildedRose(0,50,"XX");
+        gildedrose.nMoreDays(3);
+        assertThat(gildedrose.getQuality()).isEqualTo(44);
+
+    }
 }
