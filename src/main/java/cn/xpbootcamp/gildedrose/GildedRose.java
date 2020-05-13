@@ -9,12 +9,12 @@ class GildedRose {
 
     public void updateProduct(int days) {
         for (int i = 0; i < days; i++) {
-            Good base = getSpecificProduct(product);
-            base.updateProductAfterOneDay(product);
+            Good good = getSpecificGood(product);
+            good.updateGoodByDay(product);
         }
     }
 
-    private Good getSpecificProduct(Product product) {
+    private Good getSpecificGood(Product product) {
         Good good = null;
         switch (product.name) {
             case "Sulfuras":
@@ -58,7 +58,7 @@ class GildedRose {
             subQuality(product);
         }
 
-        private void updateProductAfterOneDay(Product product) {
+        private void updateGoodByDay(Product product) {
             updateQuality(product);
             updateSellIn(product);
             if (product.sellIn < 0) {
