@@ -96,4 +96,10 @@ public class TestGildedRose {
         assertThat(gildedrose.getQuality()).isEqualTo(44);
 
     }
+    @Test
+    public void should_return_33_when_type_is_AgedBrie_and_sellin_is_30_quality_is_30_3dayslater (){
+        GildedRose gildedrose = new GildedRose(30,30,"AgedBrie");
+        gildedrose.nMoreDays(3);
+        assertThat(gildedrose.getQuality()).isEqualTo(33);
+    }
 }
