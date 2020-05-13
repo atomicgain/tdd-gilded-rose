@@ -1,90 +1,106 @@
 package cn.xpbootcamp.gildedrose;
 
+class GildedRose {
+    Product product;
 
-public class GildedRose{
-    private int sellIn;
-    private int quality;
-    private String type;
-    private int rate=1;
-
-    public void GildedRose(int sellIn, int quality, String stuff ){
-        this.sellIn = sellIn;
-        this.quality =quality;
-        this.type = stuff;
+    public GildedRose(Product product) {
+        this.product = product;
     }
 
-    public GildedRose(int days, int value, String type) {
-        GildedRose(days,value,type);
-    }
-
-    public GildedRose(){
-        GildedRose(25,25,"normal");
-    }
-
-    public int getQuality(){
-        return this.quality;
-    }
-
-    public int getSellIn() {
-        return this.sellIn;
-    }
-
-    public int limitQuality(int i){
-        if (i>50)
-            i = 50;
-        else if (i<0)
-            i = 0;
-        return i;
-    }
-
-    public void oneMoreDay(){
-        this.sellIn-=1;
-        if (this.type == "Sulfuras"){
-            quality += 0;
-            quality = limitQuality(quality);
+    public void updateProduct(int days) {
+        for (int i = 0; i < days; i++) {
+            Good base = getSpecificProduct(product);
+            base.updateProductAfterOneDay(product);
         }
-        else if (this.type == "AgedBrie"){
-            if (this.sellIn >= 0){
-                quality += this.rate;
-                quality = limitQuality(quality);
-            }
-            else {
-                quality += this.rate*2;
-                quality = limitQuality(quality);
-            }
+    }
+
+    private Good getSpecificProduct(Product product) {
+        Good good = null;
+        switch (product.name) {
+            case "Sulfuras":
+                good = new Sulfuras();
+                break;
+            case "Aged Brie":
+                good = new AgedBrie();
+                break;
+            case "Backstage pass":
+                good = new BackstagePass();
+                break;
+            default:
+                good = new Good();
+                break;
         }
-        else if (this.type == "BackstagePass"){
-            if (this.sellIn > 10){
-                quality += this.rate;
-                quality = limitQuality(quality);
-            }
-            else if ((this.sellIn <= 10 && this.sellIn >5)){
-                quality += this.rate*2;
-                quality = limitQuality(quality);
-            }
-            else if ((this.sellIn <= 5 && this.sellIn >0)){
-                quality += this.rate*3;
-                quality = limitQuality(quality);
-            }
-            else {
-                quality = 0;
-                quality = limitQuality(quality);
-            }
-        }
-        else {
-            if (this.sellIn > 0){
-                quality -= this.rate;
-                quality = limitQuality(quality);
-            }
-            else {
-                quality -= this.rate*2;
-                quality = limitQuality(quality);
+        return good;
+    }
+
+    private class Good {
+        protected void addQuality(Product product) {
+            if (product.quality < 50) {
+                product.quality++;
             }
         }
 
+        protected void subQuality(Product product) {
+            if (product.quality > 0) {
+                product.quality--;
+            }
+        }
+
+        protected void updateExpired(Product product) {
+            subQuality(product);
+        }
+
+        protected void updateSellIn(Product product) {
+            product.sellIn--;
+        }
+
+        protected void updateQuality(Product product) {
+            subQuality(product);
+        }
+
+        private void updateProductAfterOneDay(Product product) {
+            updateQuality(product);
+            updateSellIn(product);
+            if (product.sellIn < 0) {
+                updateExpired(product);
+            }
+        }
     }
 
+    private class AgedBrie extends Good {
+        protected void updateExpired(Product product) {
+            addQuality(product);
+        }
 
+        protected void updateQuality(Product product) {
+            addQuality(product);
+        }
+    }
+    private class Sulfuras extends Good {
+        protected void updateExpired(Product product) {
+        }
 
+        protected void updateSellIn(Product product) {
+        }
+
+        protected void updateQuality(Product product) {
+        }
+    }
+
+    private class BackstagePass extends Good {
+        protected void updateExpired(Product product) {
+            product.quality = 0;
+        }
+
+        protected void updateQuality(Product product) {
+            addQuality(product);
+            if (product.sellIn <= 10) {
+                addQuality(product);
+            }
+            if (product.sellIn <= 5) {
+                addQuality(product);
+            }
+        }
+    }
 }
 
