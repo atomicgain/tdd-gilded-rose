@@ -59,7 +59,7 @@ Then
 Given  
 	萨弗拉斯(Sulfuras)不论是否过期(SellIn 的值任意变化)
 When
-	处理
+	商品信息更新1天
 Then
 	价值不变(Quality=Quality)
 
@@ -67,7 +67,7 @@ Then
 Given  
 	陈年干酪(Aged Brie)过期前(SellIn 的值大于 0 时)
 When
-	处理
+	商品信息更新1天
 Then
 	价值递增(rate = origin_rate，Quality=Quality+rate)
 
@@ -75,7 +75,7 @@ Then
 Given  
 	陈年干酪(Aged Brie)过期后(SellIn 的值小于 0 时)
 When
-	处理
+	商品信息更新1天
 Then
 	价值双倍上升(rate = 2*origin_rate，Quality=Quality+rate)
 
@@ -85,31 +85,31 @@ Then
 Given  
 	后台门票（Backstage pass）在小于10天大于5天的情况下(SellIn 小于10大于5)
 When
-	处理
+	商品信息更新1天
 Then
-	价值不变(Quality=Quality+2)
+	价值加2(Quality=Quality+2)
 
 
 Given  
 	后台门票（Backstage pass）在小于5天大于0天的情况下(SellIn 小于5大于0)
 When
-	处理
+	商品信息更新1天
 Then
-	价值不变(Quality=Quality+3)
+	价值加3(Quality=Quality+3)
 
 
 Given  
 	后台门票（Backstage pass）在小于0天的情况下(SellIn 小于0)
 When
-	处理
+	商品信息更新1天
 Then
-	价值不变(Quality=0)
+	价值为0(Quality=0)
 
 
 Given  
 	其它商品过期后(SellIn 的值小于 0 时)
 When
-	处理
+	商品信息更新1天
 Then
 	价值双倍下滑(rate = 2*origin_rate，Quality=Quality-rate)
 
@@ -119,5 +119,13 @@ When
 	商品信息更新3天
 Then
 	商品价值应为44
+
+
+Given
+	陈年干酪(Aged Brie)价值30, 保质期30
+When
+	商品信息更新3天
+Then
+	商品价值为33
 
 ~~~
