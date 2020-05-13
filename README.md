@@ -34,98 +34,76 @@
 ~~~
 
 Given  
-	价值大于50时(Quality 的值大于 50 时)
+	保值商品Sulfuras初始价值为49, 保质期50
 When
-	处理
+	商品信息更新两天
 Then
-	将价值调整为50 (Quality 的值赋为 50)
+	商品价值应为50
 
 
 Given  
-	价值小于0时(Quality 的值小于 0 时)
+	普通商品SS初始价值为1, 保质期0
 When
-	处理
+	商品信息更新两天
 Then
-	将价值调整为0(Quality 的值赋为 0)
+	商品价值应为0
 
 
 Given  
-	价值在0到50之间时(Quality 的值大于等于 0 小于等于50时)
-When
-	处理
-Then
-	将价值保持原值(Quality 的值赋为自己)
-
-Given  
-	萨弗拉斯(Sulfuras)不论是否过期(SellIn 的值任意变化)
-When
-	商品信息更新1天
-Then
-	价值不变(Quality=Quality)
-
-
-Given  
-	陈年干酪(Aged Brie)过期前(SellIn 的值大于 0 时)
-When
-	商品信息更新1天
-Then
-	价值递增(rate = origin_rate，Quality=Quality+rate)
-
-
-Given  
-	陈年干酪(Aged Brie)过期后(SellIn 的值小于 0 时)
-When
-	商品信息更新1天
-Then
-	价值双倍上升(rate = 2*origin_rate，Quality=Quality+rate)
-
-
-
-
-Given  
-	后台门票（Backstage pass）在小于10天大于5天的情况下(SellIn 小于10大于5)
-When
-	商品信息更新1天
-Then
-	价值加2(Quality=Quality+2)
-
-
-Given  
-	后台门票（Backstage pass）在小于5天大于0天的情况下(SellIn 小于5大于0)
-When
-	商品信息更新1天
-Then
-	价值加3(Quality=Quality+3)
-
-
-Given  
-	后台门票（Backstage pass）在小于0天的情况下(SellIn 小于0)
-When
-	商品信息更新1天
-Then
-	价值为0(Quality=0)
-
-
-Given  
-	其它商品过期后(SellIn 的值小于 0 时)
-When
-	商品信息更新1天
-Then
-	价值双倍下滑(rate = 2*origin_rate，Quality=Quality-rate)
-
-Given
 	普通商品XX初始价值为50,保质期0天
 When
 	商品信息更新3天
 Then
 	商品价值应为44
 
-
-Given
+Given  
 	陈年干酪(Aged Brie)价值30, 保质期30
 When
 	商品信息更新3天
 Then
 	商品价值为33
 
+
+Given  
+	陈年干酪(Aged Brie)价值30,保质期为0
+When
+	商品信息更新3天
+Then
+	商品价值为36
+
+Given  
+	萨弗拉斯(Sulfuras)商品价值30,过期时间0
+When
+	商品信息更新3天
+Then
+	商品价值为30
+
+Given  
+	后台门票（Backstage pass）价值为10, 演出前20天 
+When
+	商品信息更新3天
+Then
+	商品价值为13
+
+
+Given  
+	后台门票（Backstage pass）价值为10,演出前9天
+When
+	商品信息更新3天
+Then
+	商品价值为16
+
+Given  
+	后台门票（Backstage pass）价值为10,演出前4天
+When
+	商品信息更新3天
+Then
+	商品价值为19
+
+Given  
+	后台门票（Backstage pass）价值为10,演出前1天
+When
+	商品信息更新3天
+Then
+	商品价值为0
 ~~~
